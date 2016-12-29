@@ -13,8 +13,7 @@ class Stepper {
 
     stepRight() {
         this.index = this.index == 3 ? 0 : this.index += 1;
-
-        setPattern(pattern1[this.index]);
+        this.setPattern(pattern1[this.index]);
         sleep.usleep(2000);
     }
 }
