@@ -1,6 +1,5 @@
-var sleep = require('sleep');
-
-exports.module = function () {
+module.exports = function () {
+    var sleep = require('sleep');
     var index = 0;
 
     function setPattern(i) {
