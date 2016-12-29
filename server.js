@@ -1,6 +1,7 @@
 var app = require('express')();
 var server = require('http').createServer(app);
 var bodyParser = require('body-parser');
+var motor = require('./stepper')();
 
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
@@ -9,7 +10,8 @@ app.use(function (req, res, next) {
     next();
 });
 app.post('/gate', function(req, res){
-    console.log('command ->', req.body.command)
+    console.log('command ->', req.body.command);
+    motor.stepRight();
     res.json({echo: req.body.command})
 });
 
