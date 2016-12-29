@@ -1,3 +1,5 @@
+var sleep = require('sleep');
+
 exports.module = function () {
     var index = 0;
 
@@ -14,6 +16,6 @@ exports.module = function () {
         index = index == 3 ? 0 : index += 1;
 
         SetPattern(pattern1[index]);
-        yield setTimeout(2);
+        sleep.usleep(2000);
     }
 }
