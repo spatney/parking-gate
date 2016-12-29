@@ -12,7 +12,6 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "rpio": "^0.9.14",
-    "sleep": "^5.0.0"
+    "rpio": "^0.9.14"
   }
 }

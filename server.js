@@ -2,6 +2,7 @@ var app = require('express')();
 var server = require('http').createServer(app);
 var bodyParser = require('body-parser');
 var motor = require('./stepper');
+var led = require('./led');
 
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
@@ -11,8 +12,8 @@ app.use(function (req, res, next) {
 });
 app.post('/gate', function(req, res){
     console.log('command ->', req.body.command);
-    let m = new motor();
-    m.blink();
+    let l = new led();
+    l.blink(5);
     res.json({echo: req.body.command})
 });
 
