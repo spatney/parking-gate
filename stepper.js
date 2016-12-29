@@ -11,10 +11,10 @@ module.exports = function () {
         }
     }
 
-    function stepRight() {
+    prototype.stepRight = function() {
         index = index == 3 ? 0 : index += 1;
 
-        SetPattern(pattern1[index]);
+        setPattern(pattern1[index]);
         sleep.usleep(2000);
     }
 }
