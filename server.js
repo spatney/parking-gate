@@ -12,9 +12,7 @@ app.use(function (req, res, next) {
 app.post('/gate', function(req, res){
     console.log('command ->', req.body.command);
     let m = new motor();
-    for(var i=0;i<4;i++){
-        m.stepRight();
-    }
+    m.blink();
     res.json({echo: req.body.command})
 });
 
