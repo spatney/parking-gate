@@ -1,8 +1,8 @@
 sleep = require('sleep');
 class Stepper {
-    constructor(){
-        this.index=0
-        this.pattern1 =[ 1, 8, 4, 2 ];
+    constructor() {
+        this.index = 0
+        this.pattern1 = [1, 8, 4, 2];
     }
 
     setPattern(i) {
