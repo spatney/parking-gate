@@ -1,8 +1,8 @@
-module.exports = function () {
-    var sleep = require('sleep');
-    var index = 0;
+sleep = require('sleep');
+class Stepper {
+    constructor(){this.index=0}
 
-    function setPattern(i) {
+    setPattern(i) {
         switch (i) {
             case 1: console.log('case', 1); break;
             case 2: console.log('case', 2); break;
@@ -11,10 +11,12 @@ module.exports = function () {
         }
     }
 
-    prototype.stepRight = function() {
+    stepRight() {
         index = index == 3 ? 0 : index += 1;
 
         setPattern(pattern1[index]);
         sleep.usleep(2000);
     }
 }
+
+module.exports = Stepper;
