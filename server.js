@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var StepperMotor = require('./stepper');
 var Led = require('./led');
 
-var gateMotor = new StepperMotor(11,12,13,15);
+var gateMotor = new StepperMotor(11, 12, 13, 15);
 var led = new Led(16);
 
 app.use(bodyParser.json());
@@ -14,38 +14,53 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post('/motor', function(req, res){
+app.post('/motor', function (req, res) {
     console.log('motor', req.body);
     let dir = req.body.dir;
     let steps = req.body.steps;
-    
-    if(dir){
+
+    if (dir) {
         gateMotor.clockwise(steps);
-    }else{
+    } else {
         gateMotor.antiClockwise(steps);
     }
-    res.json({echo:req.body});
+    res.json({ echo: req.body });
 });
 
-app.post('/led', function(req, res){
+app.post('/led', function (req, res) {
     console.log('led', req.body);
     let blinks = req.blinks;
     led.blink(blinks);
-    res.json({echo:req.body});
+    res.json({ echo: req.body });
 });
 
-app.post('/ledAsync', function(req, res){
+app.post('/ledAsync', function (req, res) {
     console.log('led', req.body);
     let blinks = req.blinks;
-    setTimeout(()=>{led.blink(blinks)}, 0);
-    res.json({echo:req.body});
+    setTimeout(() => { led.blink(blinks) }, 0);
+    res.json({ echo: req.body });
 });
 
-app.post('/gate', function(req, res){
+app.post('/gate', function (req, res) {
     console.log('command ->', req.body.command);
-    res.json({echo: req.body.command})
+    res.json({ echo: req.body.command })
 });
 
-server.listen(1337, function(){
+server.listen(1337, function () {
     console.log('listening ....')
-})
+});
+
+function getIP() {
+    var _ = require('lodash');
+    var ip = _.chain(require('os').networkInterfaces())
+        .flatten()
+        .filter(function (val) {
+            return (val.family == 'IPv4' && val.internal == false)
+        })
+        .pluck('address')
+        .first()
+        .value();
+
+    console.log(ip);
+    return ip;
+}
