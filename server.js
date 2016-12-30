@@ -49,18 +49,3 @@ app.post('/gate', function (req, res) {
 server.listen(1337, function () {
     console.log('listening ....')
 });
-
-function getIP() {
-    var _ = require('lodash');
-    var ip = _.chain(require('os').networkInterfaces())
-        .flatten()
-        .filter(function (val) {
-            return (val.family == 'IPv4' && val.internal == false)
-        })
-        .pluck('address')
-        .first()
-        .value();
-
-    console.log(ip);
-    return ip;
-}
