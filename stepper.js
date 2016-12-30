@@ -9,7 +9,7 @@ class StepperMotor {
         this.m3 = m3 || 13;
         this.m4 = m4 || 15;
 
-        console.log('ports', 'm1', m1, 'm2', m2, 'm3', m3, 'm4', m4);
+        console.log('Stepper motor pins', 'm1', m1, 'm2', m2, 'm3', m3, 'm4', m4);
 
         rpio.open(this.m1, rpio.OUTPUT, rpio.LOW);
         rpio.open(this.m2, rpio.OUTPUT, rpio.LOW);

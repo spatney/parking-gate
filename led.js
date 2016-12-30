@@ -2,6 +2,7 @@ var rpio = require('rpio');
 
 class Led {
     constructor(port) {
+        console.log('LED pin', port)
         this.port = port;
     }
 
