@@ -8,9 +8,9 @@ class Led {
     blink(times) {
         rpio.open(this.port, rpio.OUTPUT, rpio.LOW);
         for (var i = 0; i < times; i++) {
-            rpio.write(12, rpio.HIGH);
+            rpio.write(this.port, rpio.HIGH);
             rpio.sleep(1);
-            rpio.write(12, rpio.LOW);
+            rpio.write(this.port, rpio.LOW);
             rpio.msleep(500);
         }
     }
@@ -26,3 +26,5 @@ class Led {
         rpio.pwmSetData((this.port, 1024 * dutyCycle) | 0);
     }
 }
+
+module.exports = Led;

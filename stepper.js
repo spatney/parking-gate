@@ -1,30 +1,38 @@
 var rpio = require('rpio');
 
 class StepperMotor {
-    constructor() {
+    constructor(m1, m2, m3, m4) {
         this.index = 0
         this.sequence = [1, 8, 4, 2];
-        this.m1 = 11;
-        this.m2 = 12;
-        this.m3 = 13;
-        this.m4 = 15;
+        this.m1 = m1 || 11;
+        this.m2 = m2 || 12;
+        this.m3 = m3 || 13;
+        this.m4 = m4 || 15;
+
+        console.log('ports', 'm1', m1, 'm2', m2, 'm3', m3, 'm4', m4);
 
         rpio.open(this.m1, rpio.OUTPUT, rpio.LOW);
         rpio.open(this.m2, rpio.OUTPUT, rpio.LOW);
         rpio.open(this.m3, rpio.OUTPUT, rpio.LOW);
         rpio.open(this.m4, rpio.OUTPUT, rpio.LOW);
     }
-    
-    clockwise() {
-        this.index = this.index == 0 ? 3 : this.index -= 1;
-        this.setPattern(this.sequence[this.index]);
-        rpio.msleep(2);
+
+    clockwise(steps) {
+        steps = steps || 1;
+        for (let i = 0; i < steps; i++) {
+            this.index = this.index == 0 ? 3 : this.index -= 1;
+            this.setPattern(this.sequence[this.index]);
+            rpio.msleep(2);
+        }
     }
 
-    antiClockwise() {
-        this.index = this.index == 3 ? 0 : this.index += 1;
-        this.setPattern(this.sequence[this.index]);
-        rpio.msleep(2);
+    antiClockwise(steps) {
+        steps = steps || 1;
+        for (let i = 0; i < steps; i++) {
+            this.index = this.index == 3 ? 0 : this.index += 1;
+            this.setPattern(this.sequence[this.index]);
+            rpio.msleep(2);
+        }
     }
 
     setPattern(i) {
