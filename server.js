@@ -29,7 +29,7 @@ app.post('/motor', function (req, res) {
 
 app.post('/led', function (req, res) {
     console.log('led', req.body);
-    let blinks = req.blinks;
+    let blinks = req.body.blinks;
     led.blink(blinks);
     res.json({ echo: req.body });
 });
