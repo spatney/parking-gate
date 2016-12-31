@@ -36,7 +36,7 @@ app.post('/led', function (req, res) {
 
 app.post('/ledAsync', function (req, res) {
     console.log('led', req.body);
-    let blinks = req.blinks;
+    let blinks = req.body.blinks;
     setTimeout(() => { led.blink(blinks) }, 0);
     res.json({ echo: req.body });
 });
