@@ -3,7 +3,7 @@ var server = require('http').createServer(app);
 var bodyParser = require('body-parser');
 var StepperMotor = require('./stepper');
 var Led = require('./led');
-var Relay = requir('./relay');
+var Relay = require('./relay');
 
 var gateMotor = new StepperMotor(11, 12, 13, 15);
 var led = new Led(16);
