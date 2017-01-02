@@ -38,7 +38,7 @@ app.post('/led', function (req, res) {
 
 app.post('/relay', function (req, res) {
     console.log('relay', req.body);
-    let state= req.body.state;
+    let state = req.body.state;
     relay.state(state);
     res.json({ echo: req.body });
 });
@@ -56,5 +56,24 @@ app.post('/gate', function (req, res) {
 });
 
 server.listen(1337, function () {
-    console.log('listening ....')
+    console.log('listening ....');
+
+    setTimeout(() => {
+        console.log('getting external ip');
+        var extIP = require('external-ip');
+
+        var getIP = extIP({
+            replace: true,
+            services: ['http://ifconfig.co/x-real-ip', 'http://ifconfig.io/ip'],
+            timeout: 600,
+            getIP: 'parallel'
+        });
+
+        getIP(function (err, ip) {
+            if (err) {
+                throw err;
+            }
+            console.log(ip);
+        });
+    }, 10000);
 });

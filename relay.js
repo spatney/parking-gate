@@ -7,8 +7,8 @@ class Relay {
         rpio.open(this.port, rpio.OUTPUT, rpio.LOW);
     }
 
-    state(on){
-        rpio.write(this.port, on? rpio.HIGH:rpio.LOW);
+    state(on) {
+        rpio.write(this.port, on ? rpio.HIGH : rpio.LOW);
     }
 }
 
