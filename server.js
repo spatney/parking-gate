@@ -21,18 +21,13 @@ app.post('/motor', function (req, res) {
     let dir = req.body.dir;
     let steps = req.body.steps;
 
-    if (dir) {
-        gateMotor.clockwise(steps);
-    } else {
-        gateMotor.antiClockwise(steps);
-    }
-    res.json({ echo: req.body });
-});
-
-app.post('/led', function (req, res) {
-    console.log('led', req.body);
-    let blinks = req.body.blinks;
-    led.blink(blinks);
+    setTimeout(() => {
+        if (dir) {
+            gateMotor.clockwise(steps);
+        } else {
+            gateMotor.antiClockwise(steps);
+        }
+    }, 0);
     res.json({ echo: req.body });
 });
 
@@ -43,37 +38,13 @@ app.post('/relay', function (req, res) {
     res.json({ echo: req.body });
 });
 
-app.post('/ledAsync', function (req, res) {
+app.post('/led', function (req, res) {
     console.log('led', req.body);
     let blinks = req.body.blinks;
     setTimeout(() => { led.blink(blinks) }, 0);
     res.json({ echo: req.body });
 });
 
-app.post('/gate', function (req, res) {
-    console.log('command ->', req.body.command);
-    res.json({ echo: req.body.command })
-});
-
 server.listen(1337, function () {
     console.log('listening ....');
-
-    setTimeout(() => {
-        console.log('getting external ip');
-        var extIP = require('external-ip');
-
-        var getIP = extIP({
-            replace: true,
-            services: ['http://ifconfig.co/x-real-ip', 'http://ifconfig.io/ip'],
-            timeout: 600,
-            getIP: 'parallel'
-        });
-
-        getIP(function (err, ip) {
-            if (err) {
-                throw err;
-            }
-            console.log(ip);
-        });
-    }, 10000);
 });
