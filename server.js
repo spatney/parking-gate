@@ -34,13 +34,14 @@ app.post('/motor', function (req, res) {
 });
 
 app.post('/gate', function(req, res){
-    console.log('relay', req.body);
+    console.log('gate', req.body);
     let state = req.body.state;
     if(state){
         gate.open();
     }else{
         gate.close();
     }
+    res.json({ echo: req.body });
 })
 
 app.post('/relay', function (req, res) {
