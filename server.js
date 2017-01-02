@@ -4,8 +4,10 @@ var bodyParser = require('body-parser');
 var StepperMotor = require('./stepper');
 var Led = require('./led');
 var Relay = require('./relay');
+var Gate = require('./gate');
 
 var gateMotor = new StepperMotor(11, 12, 13, 15);
+var gate = new Gate(38,40);
 var led = new Led(16);
 var relay = new Relay(18);
 
@@ -30,6 +32,16 @@ app.post('/motor', function (req, res) {
     }, 0);
     res.json({ echo: req.body });
 });
+
+app.post('/gate', function(req, res){
+    console.log('relay', req.body);
+    let state = req.body.state;
+    if(state){
+        gate.open();
+    }else{
+        gate.close();
+    }
+})
 
 app.post('/relay', function (req, res) {
     console.log('relay', req.body);
