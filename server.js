@@ -6,6 +6,8 @@ var Led = require('./led');
 var Relay = require('./relay');
 var Gate = require('./gate');
 
+var water = new Led(36);
+
 var gateMotor = new StepperMotor(11, 12, 13, 15);
 var gate = new Gate(38,40);
 var led = new Led(16);
@@ -41,6 +43,13 @@ app.post('/gate', function(req, res){
     }else{
         gate.close();
     }
+    res.json({ echo: req.body });
+})
+
+app.post('/water', function(req, res){
+    console.log('water', req.body);
+    water.state(true);
+    setTimeout(()=>{water.state(false)},50); 
     res.json({ echo: req.body });
 })
 

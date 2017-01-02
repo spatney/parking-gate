@@ -16,11 +16,11 @@ class Led {
         }
     }
 
-    state(on){
-        rpio.open(this.port, rpio.OUTPUT, on);
+    state(on) {
+        rpio.open(this.port, rpio.OUTPUT, on ? rpio.HIGH : rpio.LOW);
     }
 
-    pwm(dutyCycle){
+    pwm(dutyCycle) {
         rpio.open(this.port, rpio.PWM);
         rpio.pwmSetClockDivider(64);  // 300kHz
         rpio.pwmSetRange(this.port, 1024);
