@@ -6,10 +6,12 @@ var Led = require('./led');
 var Relay = require('./relay');
 var Gate = require('./gate');
 
+var vacuum = new Led(35);
 var water = new Led(36);
+var jet = new Led(37);
+var gate = new Gate(38, 40);
 
 var gateMotor = new StepperMotor(11, 12, 13, 15);
-var gate = new Gate(38,40);
 var led = new Led(16);
 var relay = new Relay(18);
 
@@ -35,21 +37,35 @@ app.post('/motor', function (req, res) {
     res.json({ echo: req.body });
 });
 
-app.post('/gate', function(req, res){
+app.post('/gate', function (req, res) {
     console.log('gate', req.body);
     let state = req.body.state;
-    if(state){
+    if (state) {
         gate.open();
-    }else{
+    } else {
         gate.close();
     }
     res.json({ echo: req.body });
 })
 
-app.post('/water', function(req, res){
+app.post('/water', function (req, res) {
     console.log('water', req.body);
     water.state(true);
-    setTimeout(()=>{water.state(false)},50); 
+    setTimeout(() => { water.state(false) }, 50);
+    res.json({ echo: req.body });
+})
+
+app.post('/jet', function (req, res) {
+    console.log('jet', req.body);
+    jet.state(true);
+    setTimeout(() => { jet.state(false) }, 50);
+    res.json({ echo: req.body });
+})
+
+app.post('/vacuum', function (req, res) {
+    console.log('vacuum', req.body);
+    vacuum.state(true);
+    setTimeout(() => { vacuum.state(false) }, 50);
     res.json({ echo: req.body });
 })
 
