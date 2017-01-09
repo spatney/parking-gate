@@ -3,6 +3,7 @@ var STEP_COUNT = 5000; // steps need to open/close fully.
 
 class PiGate {
     constructor(pulsePort, directionPort, enablePort, closed) {
+        console.log('PiGate ports', 'pulse', pulsePort, 'direction', directionPort, 'enable', enablePort);
         this.isTurning = false;
         this.closed = closed || false;
         this.pulsePort = pulsePort;
