@@ -1,19 +1,9 @@
 var rpio = require('rpio');
 
-class Led {
+class OutputPort {
     constructor(port) {
-        console.log('LED pin', port)
+        console.log('OutputPort pin', port)
         this.port = port;
-    }
-
-    blink(times) {
-        rpio.open(this.port, rpio.OUTPUT, rpio.LOW);
-        for (var i = 0; i < times; i++) {
-            rpio.write(this.port, rpio.HIGH);
-            rpio.sleep(1);
-            rpio.write(this.port, rpio.LOW);
-            rpio.msleep(500);
-        }
     }
 
     state(on) {
@@ -28,4 +18,4 @@ class Led {
     }
 }
 
-module.exports = Led;
+module.exports = OutputPort;
