@@ -16,3 +16,5 @@ class RGBLed{
         this.blue.pwm(b);
     }
 }
+
+module.exports = RGBLed;
