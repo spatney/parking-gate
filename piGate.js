@@ -19,14 +19,14 @@ class PiGate {
         console.log('opening ...');
         if (!this.closed || this.isTurning) return;
         this.closed = false;
-        turnMotor(false, STEP_COUNT);
+        this.turnMotor(false, STEP_COUNT);
     }
 
     close() {
         console.log('closing ...');
         if (this.closed || this.isTurning) return;
         this.closed = true;
-        turnMotor(true, STEP_COUNT)
+        this.turnMotor(true, STEP_COUNT)
     }
 
     turnMotor(dir, steps) {
