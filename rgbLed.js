@@ -1,4 +1,3 @@
-var rpio = require('rpio');
 var OutputPort = require('./outputPort');
 
 class RGBLed{
