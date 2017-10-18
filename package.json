@@ -14,6 +14,7 @@
     "express": "^4.14.0",
     "external-ip": "^0.2.4",
     "request-json": "^0.6.1",
-    "rpio": "^0.9.14"
+    "rpio": "^0.9.14",
+    "spider-device": "^1.0.4"
   }
 }

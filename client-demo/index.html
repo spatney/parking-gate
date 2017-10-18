@@ -1,0 +1,33 @@
+<html>
+    
+    <body>
+        <button onclick="toggle()">Toggle</button>
+        <div id="table"></div>
+        <script src="socio.js"></script>
+        <script src="client-soc.js"></script>
+        <script>
+            let ref = new SocketClient({
+                appId: '',
+                uid: 'pi'
+            });
+    
+            let i = 1;
+    
+            ref.subscribe(() => {
+                console.log('subscribed');
+            });
+    
+            function toggle() {
+                ref.emit('command', {
+                    device: 'rgb',
+                    red: 233,
+                    green: 200,
+                    blue: 100
+                });
+    
+                i = i === 1 ? 0 : 1;
+            }
+        </script>
+    </body>
+    
+    </html>

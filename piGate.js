@@ -1,5 +1,5 @@
-var rpio = require('rpio');
-var STEP_COUNT = 5000; // steps need to open/close fully.
+const rpio = require('rpio');
+const STEP_COUNT = 5000; // steps need to open/close fully.
 
 class PiGate {
     constructor(pulsePort, directionPort, enablePort, closed) {
@@ -26,7 +26,7 @@ class PiGate {
         console.log('closing ...');
         if (this.closed || this.isTurning) return;
         this.closed = true;
-        this.turnMotor(true, STEP_COUNT)
+        this.turnMotor(true, STEP_COUNT);
     }
 
     turnMotor(dir, steps) {
